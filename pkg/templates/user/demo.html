@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <select name="state" id="state">
+        <option value="">Select</option>
+        {% for state in states %}
+            <option value="{{state.state_id}}">{{state.state_name}}</option>
+        {% endfor %}
+    </select> <br> <br> <br> <br>
+    <select name="lga" id="lga"></select> <br> <b> <br>
+    <button type="button">Send</button>
+
+
+      <!-- Plugin JavaScript -->
+  <script src="{{url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+  <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+
+  <script>
+    $(document).ready(function(){
+        $("#state").change(function(){
+           var stateid = $(this).val()
+           var csrf = "{{csrf_token()}}"
+           $.ajax({
+            url: "/lga/post",
+            type: 'POST',
+            data: {"state_id":stateid, "csrf_token":csrf},
+            success: function(resp){}
+           })
+        })
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+{% extends "user/home_layout.html" %}
+
+  {% block content %}
+  <div class="content" style="background-color: white;padding:3em">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="alert">
+        {% for category, message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endwith %}
+
+{{fullname}}
+{{amt}}
+{{email}}
+    
+        <form action="" method="post">
+           <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+            <h2>Donation Form: Thank you!</h2>
+            <p>Kindly complete the form below with the amount you want to donate. Click on the button and it will take you to a page where you will input your card details...</p>
+            <div class="mb-3">
+                <label><label for="fullname">Fullname</label></label>
+                <input class="form-control border-success noround" id="fullname" name="fullname" required type="text" value="{{deets.user_fname}} {{deets.user_lname}}">           
+            </div>
+            <div class="mb-3">
+                <label><label for="email">Email</label></label>
+                <input class="form-control border-success noround" id="email" name="email" required type="text" value="{{deets.user_email}}">
+            </div>
+            <div class="mb-3">
+                <label><label for="amt">Specify Amount</label></label>
+                <input class="form-control border-success noround" id="amt" name="amt" required type="text" value="">          
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-lg btn-dark noround col-12" id="btnsubmit" name="btnsubmit" type="submit" value="Continue"> 
+                    
+            </div>
+        </form>
+    </div>
+
+
+  </div>
+  {% endblock content %}
+
+  {% block breakout %}
+  {% endblock breakout %}
+  
+  {% block conversation %}
+  {% endblock conversation %}
+  
+  {% block partner %}
+  {% endblock partner %}
+
+
+<!-- end more content
+  
+FOOTER 
+<footer class="container" style="height:100px; line-height:100px;">
+  <p class="float-end"><a href="#" style="color:#FF5714">Back to top</a></p>
+  <p>&copy; 2017–2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+</footer>
+
+</main>
+
+<script src="static/bootstrap/js/bootstrap.bundle.min.js"></script>
+      
+  </body>
+</html> -->

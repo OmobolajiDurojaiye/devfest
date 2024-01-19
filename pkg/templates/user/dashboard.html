@@ -1,0 +1,27 @@
+{%extends "user/home_layout.html"%}
+
+{% block customcss %}
+  style="background-color: #fff;"
+{% endblock customcss %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="alert">
+                {% for category, message in messages %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+            </div>
+      {% endif %}
+  {% endwith %}
+<div class="content">
+  <h3>Welcome! {{deets.user_fname|title}}</h3>
+  <p>This is your dashboard, please use the second-level menu to carry out tasks</p>
+ </div>
+{% endblock content %}
+
+{% block breakout %}
+{% endblock breakout %}
+
+{% block conversation %}
+{% endblock conversation %}

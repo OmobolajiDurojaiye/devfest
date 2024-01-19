@@ -1,0 +1,45 @@
+{%extends "user/home_layout.html"%}
+
+{% block customcss %}
+  style="background-color: #fff;"
+{% endblock customcss %}
+
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="alert">
+                {% for category, message in messages %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+            </div>
+      {% endif %}
+  {% endwith %}
+
+
+<div class="content">
+  <table class="table table-responsive">
+    <tr>
+        <td>Donation amount</td>
+        <td>{{donation_deets.donate_amt}}</td>
+    </tr>
+    <tr>
+        <td>Ref No</td>
+        <td>{{donation_deets.donate_ref}}</td>
+    </tr>
+    <tr>
+        <form action="/topaystack" method="post">
+            <td>
+                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                <button class="btn btn-success col-12">Confirm Donation</button>
+            </td>
+        </form>
+    </tr>
+  </table>
+ </div>
+{% endblock content %}
+
+{% block breakout %}
+{% endblock breakout %}
+
+{% block conversation %}
+{% endblock conversation %}
